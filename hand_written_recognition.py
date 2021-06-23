@@ -81,7 +81,7 @@ model.add(Dense(26,activation ="softmax"))
 model.compile(optimizer = Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(train_X, train_yOHE, epochs=1,  validation_data = (test_X,test_yOHE))
 model.summary()
-model.save(r'model_hand5.jpg')
+model.save(r'model_hand.jpg')
 #TRAIN AND VALIDATION ACCURACIES AND LOSSES.
 print("The validation accuracy is :", history.history['val_accuracy'])
 print("The training accuracy is :", history.history['accuracy'])
@@ -98,7 +98,7 @@ for i,ax in enumerate(axes):
     ax.set_title("Prediction: "+pred)
     ax.grid()
 #PREDICTION ON EXTERNAL IMAGE.
-img = cv2.imread(r'S.jpg')
+img = cv2.imread(r'image.jpg')
 img_copy = img.copy()
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = cv2.resize(img, (400,440))
@@ -111,7 +111,7 @@ img_final =np.reshape(img_final, (1,28,28,1))
 img_pred = word_dict[np.argmax(model.predict(img_final))]
 cv2.putText(img, "HAND WRITTEN CHARACTER RECOGNITION.", (20,25), cv2.FONT_HERSHEY_TRIPLEX, 0.7, color = (50,20,230))
 cv2.putText(img, "Prediction: " + img_pred, (20,410), cv2.FONT_HERSHEY_DUPLEX, 1.3, color = (255,100,30))
-cv2.imshow('Machine learning for handwritten character recognition _ _ _ ', img)
+cv2.imshow('_ Machine learning for handwritten character recognition_', img)
 while (1):
     k = cv2.waitKey(1) & 0xFF
     if k == 27:
